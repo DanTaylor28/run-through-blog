@@ -8,6 +8,7 @@ class Post(models.Model):
     title_tag = models.CharField(max_length=250)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
+    post_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.title} | {self.author}"
