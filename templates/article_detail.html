@@ -5,11 +5,13 @@
 
     <h1>{{ post.title }}</h1>
     <small>Uploaded: {{ post.post_date }}</small><br>
-    <small>By: {{ post.author.first_name }} {{ post.author.last_name }}</small> |
-    <small><a href="{% url 'update_post' post.pk %}">Edit Post</a></small> |
-    <small><a href="{% url 'delete_post' post.pk %}">Delete Post</a></small>
+    <small>By: {{ post.author.first_name }} {{ post.author.last_name }}</small>
+    {% if user.is_authenticated %} |
+        <small><a href="{% url 'update_post' post.pk %}">Edit Post</a></small> |
+        <small><a href="{% url 'delete_post' post.pk %}">Delete Post</a></small>
+    {% endif %}
     <hr>
-    <p>{{ post.body }}</p>
+    <p>{{ post.body|safe }}</p>
     <br>
     <a href="{% url 'home' %}" class="btn btn-secondary">Go Back</a>
 </body>
